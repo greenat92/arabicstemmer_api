@@ -9,7 +9,7 @@ from resources.user import UserRegister
 from resources.word import Word, WordList
 from resources.stem import Stem, StemList
 from resources.stopwords import Stopword, StopwordList
-#from resources.stemmer import StemText
+from resources.stemmer import StemText
 
 app = Flask(__name__)
 
@@ -31,7 +31,7 @@ api.add_resource(WordList, '/v1/words')
 api.add_resource(StemList, '/v1/stems')
 api.add_resource(StopwordList, '/v1/stopwords')
 
-#api.add_resource(StemText, '/v1/stem')
+api.add_resource(StemText, '/v1/stem')
 
 api.add_resource(UserRegister, '/register')
 

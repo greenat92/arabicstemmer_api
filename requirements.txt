@@ -1,5 +1,7 @@
+arabicstemmer
 Flask
 Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
+PyArabic
 psycopg2

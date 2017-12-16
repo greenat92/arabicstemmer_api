@@ -1,0 +1,615 @@
+{
+	"info": {
+		"name": "arabicstemmer_api",
+		"_postman_id": "ba76bcd1-0d6e-b3f9-8fd7-8157c0f2556e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "development",
+			"description": "This is for testing apis in development mode",
+			"item": [
+				{
+					"name": "Core",
+					"description": "contains the metadata apis",
+					"item": [
+						{
+							"name": "v1/core/stem",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"مكتبة\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stem",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stem"
+									]
+								},
+								"description": "This api takes a arabic text as body data and  return the list of stems using the arabicstemmer algorithm and save each word from the text with its stem."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/core/stem/<word>",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/v1/core/stem/<word>",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"core",
+										"stem",
+										"<word>"
+									]
+								},
+								"description": "This api takes a word as a params and returns the stem using the arabicstemmer algorithm and save the word/stem in the database ."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "stem resource",
+					"description": "This folder contains the crud apis of stem resource",
+					"item": [
+						{
+							"name": "v1/stem/<stem_value>",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stem/<stem_value>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stem",
+										"<stem_value>"
+									]
+								},
+								"description": "This api will delete a specific stem identify by its value from the database."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stem/<stem_value>",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/v1/stem/%D8%B9%D8%B1%D8%A8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stem",
+										"%D8%B9%D8%B1%D8%A8"
+									]
+								},
+								"description": "This api will create a specific stem identify by its value  if doesn't exist in the db and save it, if so return message \"this stem already exist\"."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stem/<stem_value>",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stem/%D8%B9%D8%B1%D8%A8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stem",
+										"%D8%B9%D8%B1%D8%A8"
+									]
+								},
+								"description": "This api will return the a specific stem identify by its value from the database."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stem/<stem_value>",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  // additional information will be add later\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stem/<stem_value>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stem",
+										"<stem_value>"
+									]
+								},
+								"description": "This api will update a specific stem identify by its value and resave it,  if doesn't exist in the db will create it and save it."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Word resource",
+					"description": "This folder contains the crud api of word resource",
+					"item": [
+						{
+							"name": "v1/word/<word_id>",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/word/<word_id>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"word",
+										"<word_id>"
+									]
+								},
+								"description": "This api will delete a specific word identify by its id from the database."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/word/<word_value>",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt}}"
+									},
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"stem_id\": 1\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/word/%D8%B9%D8%B1%D8%A8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"word",
+										"%D8%B9%D8%B1%D8%A8"
+									]
+								},
+								"description": "This api will create a specific word identify by its value  if doesn't exist in the db and save it, if so return message \"this word already exist\"."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/word/<word_id>",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  // additional information will be add later\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/word/<word_id>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"word",
+										"<word_id>"
+									]
+								},
+								"description": "This api will update a specific word identify by its value, if doesn't exist in the db  will create it and save it."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/words",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/words",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"words"
+									]
+								},
+								"description": "This api will return the list of words from the database."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/word/<word_id>",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/word/<word_id>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"word",
+										"<word_id>"
+									]
+								},
+								"description": "This api will return a specific word identify by its id from the database."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Stop Words resource",
+					"description": "This folder contains the crud api of stop words resource",
+					"item": [
+						{
+							"name": "v1/stopword/<stopword_id>",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stopword/<stopword_id>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stopword",
+										"<stopword_id>"
+									]
+								},
+								"description": "This api will delete a specific stopword identify by its id from the database."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stopword/<stopword_id>",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/v1/stopword/%D8%B9%D8%B1%D8%A8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stopword",
+										"%D8%B9%D8%B1%D8%A8"
+									]
+								},
+								"description": "This api will create a specific stopword identify by its value  if doesn't exist in the db and save it, if so return message \"this stopword already exist\"."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stopword/<stopword_id>",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  // additional information will be add later\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stopword/<stopword_value>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stopword",
+										"<stopword_value>"
+									]
+								},
+								"description": "This api will update a specific stopword identify by its value, if doesn't exist in the db will create and save it."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stopwords",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/stopwords",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"stopwords"
+									]
+								},
+								"description": "This api will return the list of stopwords from the database."
+							},
+							"response": []
+						},
+						{
+							"name": "v1/stopword/<stopword_id>",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/s/<stem_value>",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"s",
+										"<stem_value>"
+									]
+								},
+								"description": "This api will return a specific stopword identify by its id from the database."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Auth",
+					"description": "contains the auth apis",
+					"item": [
+						{
+							"name": "/auth",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"LBen\",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/auth",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth"
+									]
+								},
+								"description": "This api for auth users will return the JWT value."
+							},
+							"response": []
+						},
+						{
+							"name": "/register",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"LBen\",\n  \"email\": \"lakhdar@gmail.com\",\n  \"full_name\": \"Lakhdar Benzahia\",\n  \"specialty\": \"NLP reseacher \",\n  \"password\": \"123free\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "This api will create a user and save it in the database, if the user already exist return message \"the user is already  exist\""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "v1/stems",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "e",
+								"value": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"lakhdar\",\n  \"password\": \"123free\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/stems",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"stems"
+							]
+						},
+						"description": "This api will return the list of stems from the database."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

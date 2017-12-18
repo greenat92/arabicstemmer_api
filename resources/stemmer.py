@@ -16,6 +16,7 @@ class StemText(Resource):
         required=True,
         help="Arabic Text to be stemmed."
     )
+    #@jwt_required()
     def post(self):
         data = StemText.parser.parse_args()
         if len(data['text']) == 0:

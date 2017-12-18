@@ -2,12 +2,14 @@ from flask_restful import Resource, reqparse
 from models.stem import StemModel
 
 class Stem(Resource):
+    #@jwt_required()
     def get(self, stem_value):
         stem = StemModel.find_by_stem(stem_value)
         if stem:
             return stem.json()
         return {'message': 'Stem not found'}, 404
 
+    #@jwt_required()
     def post(self, stem_value):
         if StemModel.find_by_stem(stem_value):
             return {'message': "A stem with name '{}' already exists.".format(stem_value)}, 400
@@ -20,6 +22,7 @@ class Stem(Resource):
 
         return stem.json(), 201
 
+    #@jwt_required()
     def delete(self, stem_value):
         stem = StoreModel.find_by_stem(stem_value)
         if stem:
@@ -27,6 +30,7 @@ class Stem(Resource):
 
         return {'message': 'Stem deleted'}
 
+    #@jwt_required()
     def put(self, stem_value):
 
         stem = StemModel.find_by_stopword(stopword_value)
@@ -41,5 +45,6 @@ class Stem(Resource):
         return stem.json()
 
 class StemList(Resource):
+    #@jwt_required()
     def get(self):
         return {'stems': [stem.json() for stem in StemModel.query.all()]} # TODO: pagination

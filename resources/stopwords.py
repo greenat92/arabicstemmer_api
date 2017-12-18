@@ -2,12 +2,14 @@ from flask_restful import Resource, reqparse
 from models.stopwords import StopwordModel
 
 class Stopword(Resource):
+    #@jwt_required()
     def get(self, stopword_value):
         stopword = StopwordModel.find_by_stopword(stopword_value)
         if stopword:
             return stopword.json()
         return {'message': 'stopword not found'}, 404
 
+    #@jwt_required()
     def post(self, stopword_value):
         if StopwordModel.find_by_stopword(stopword_value):
             return {'message': "A stopword with name '{}' already exists.".format(stopword_value)}, 400
@@ -20,6 +22,7 @@ class Stopword(Resource):
 
         return stopword.json(), 201
 
+    #@jwt_required()
     def delete(self, stopword_value):
         stopword = StopwordModel.find_by_stopword(stopword_value)
         if stopword:
@@ -27,6 +30,7 @@ class Stopword(Resource):
 
         return {'message': 'stopword deleted'}
 
+    #@jwt_required()
     def put(self, stopword_value):
 
         stopword = StopwordModel.find_by_stopword(stopword_value)
@@ -41,5 +45,6 @@ class Stopword(Resource):
         return stopword.json()
 
 class StopwordList(Resource):
+    #@jwt_required()
     def get(self):
         return {'stopwords': [stopword.json() for stopword in StopwordModel.query.all()]} # TODO: pagination

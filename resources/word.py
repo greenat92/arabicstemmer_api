@@ -17,6 +17,7 @@ class Word(Resource):
             return word.json()
         return {'message': 'Word not found'}, 404
 
+    #@jwt_required()
     def post(self, word_value):
         if WordModel.find_by_word(word_value):
             return {'message': "An word with name '{}' already exists.".format(word_value)}, 400
@@ -32,6 +33,7 @@ class Word(Resource):
 
         return word.json(), 201
 
+    #@jwt_required()
     def delete(self, word_value):
         word = WordModel.find_by_word(word_value)
         if word:
@@ -39,6 +41,7 @@ class Word(Resource):
 
         return {'message': 'word deleted'}
 
+    #@jwt_required()
     def put(self, word_value):
         data = Word.parser.parse_args()
 
@@ -56,5 +59,6 @@ class Word(Resource):
 
 
 class WordList(Resource):
+    #@jwt_required()
     def get(self):
         return {'words': [x.json() for x in WordModel.query.all()]} # TODO: pagination

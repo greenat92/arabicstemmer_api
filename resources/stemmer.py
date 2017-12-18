@@ -2,13 +2,13 @@ from flask_jwt import jwt_required
 from flask_restful import Resource, reqparse
 from arabicstemmer import ArabicStemmer
 from pyarabic.araby import tokenize
-
+from helpers.stops import STOPS_LIST
 from models.stem import StemModel
 from models.word import WordModel
 
 # TODO: strip ponctuation marks using Regx
 # TODO: filter stopwords
-# TODO: store stem/words in the db 
+# TODO: store stem/words in the db
 class StemText(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('text',
@@ -25,9 +25,14 @@ class StemText(Resource):
             stemmer = ArabicStemmer()
             stems = []
             result = {'stem': '', 'words': []}
+            stop_nbr = 0
             for token in tokens: # TODO: improve this block by using python list comprehension
                 token = token.strip()
-                stemmed = stemmer.stemWord(token)
+                if token in STOPS_LIST:
+                    stemmed = token
+                    stop_nbr += 1
+                else:
+                    stemmed = stemmer.stemWord(token)
                 i = 0
                 found = False
                 while (i < len(stems)):
@@ -45,6 +50,7 @@ class StemText(Resource):
             return { "stems": stems,
                      "statistics":{"stems_count": len(stems),
                                    "words_count":len(tokens),
+                                   "stops_count": stop_nbr,
                                    "ratio": len(stems)/float(len(tokens)) # TODO: redefine the ratio arithmetic
                                    }
                    }, 200

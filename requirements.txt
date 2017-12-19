@@ -3,5 +3,6 @@ Flask
 Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
+uwsgi
 PyArabic
 psycopg2

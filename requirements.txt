@@ -1,5 +1,6 @@
 arabicstemmer
 Flask
+flask-cors
 Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy

@@ -3,6 +3,7 @@ import os
 from flask import Flask, Blueprint
 from flask_restful import Api, output_json
 from flask_jwt import JWT
+from flask_cors import CORS
 
 from security import authenticate, identity
 from resources.user import UserRegister
@@ -18,6 +19,7 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = '9&[!=l-n>;*{B@,N'
+CORS(app)
 api = Api(app)
 # blueprint = Blueprint('api', __name__, url_prefix='/api/v1') # TODO: add url_prefix to api
 
